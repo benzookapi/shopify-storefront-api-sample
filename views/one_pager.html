@@ -3,105 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <title>One pager checkout</title>
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/@shopify/polaris@4.14.0/styles.min.css"
-  />
 </head>
 <body>
 
-  <div>
-    <p class="Polaris-DisplayText Polaris-DisplayText--sizeExtraLarge">Good evening, Dominic.</p>
-    <div id="PolarisPortalsContainer"></div>
+  <div style="margin:0 auto;">
+    <h1>テスト商品</h1>   
   </div>
-
-  <div><span class="Polaris-Thumbnail Polaris-Thumbnail--sizeMedium"><img src="https://cdn.shopify.com/s/files/1/0064/0712/7062/products/ScreenShot2020-10-30at3.06.05PM.png?v=1604038027" alt="Black choker necklace"></span>
-    <div id="PolarisPortalsContainer"></div>
+  <div style="margin:0 auto;">
+   <img src="https://cdn.shopify.com/s/files/1/0064/0712/7062/products/ScreenShot2020-10-30at3.06.05PM.png?v=1604038027">  
   </div>
-
-  <div>
-    <div class="Polaris-FormLayout">
-      <div role="group" class="Polaris-FormLayout--grouped">
-        <div class="Polaris-FormLayout__Items">
-          <div class="Polaris-FormLayout__Item">
-            <div class="">
-              <div class="Polaris-Labelled__LabelWrapper">
-                <div class="Polaris-Label"><label id="PolarisTextField15Label" for="PolarisTextField15" class="Polaris-Label__Text">Minimum order</label></div>
-              </div>
-              <div class="Polaris-Connected">
-                <div class="Polaris-Connected__Item Polaris-Connected__Item--primary">
-                  <div class="Polaris-TextField"><input id="PolarisTextField15" class="Polaris-TextField__Input" type="number" aria-labelledby="PolarisTextField15Label" aria-invalid="false" value="">
-                    <div class="Polaris-TextField__Spinner" aria-hidden="true">
-                      <div role="button" class="Polaris-TextField__Segment" tabindex="-1">
-                        <div class="Polaris-TextField__SpinnerIcon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
-                              <path d="M15 12l-5-5-5 5h10z"></path>
-                            </svg></span></div>
-                      </div>
-                      <div role="button" class="Polaris-TextField__Segment" tabindex="-1">
-                        <div class="Polaris-TextField__SpinnerIcon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
-                              <path d="M5 8l5 5 5-5H5z"></path>
-                            </svg></span></div>
-                      </div>
-                    </div>
-                    <div class="Polaris-TextField__Backdrop"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="Polaris-FormLayout__Item">
-            <div class="">
-              <div class="Polaris-Labelled__LabelWrapper">
-                <div class="Polaris-Label"><label id="PolarisTextField16Label" for="PolarisTextField16" class="Polaris-Label__Text">Maximum order</label></div>
-              </div>
-              <div class="Polaris-Connected">
-                <div class="Polaris-Connected__Item Polaris-Connected__Item--primary">
-                  <div class="Polaris-TextField"><input id="PolarisTextField16" class="Polaris-TextField__Input" type="number" aria-labelledby="PolarisTextField16Label" aria-invalid="false" value="">
-                    <div class="Polaris-TextField__Spinner" aria-hidden="true">
-                      <div role="button" class="Polaris-TextField__Segment" tabindex="-1">
-                        <div class="Polaris-TextField__SpinnerIcon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
-                              <path d="M15 12l-5-5-5 5h10z"></path>
-                            </svg></span></div>
-                      </div>
-                      <div role="button" class="Polaris-TextField__Segment" tabindex="-1">
-                        <div class="Polaris-TextField__SpinnerIcon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
-                              <path d="M5 8l5 5 5-5H5z"></path>
-                            </svg></span></div>
-                      </div>
-                    </div>
-                    <div class="Polaris-TextField__Backdrop"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div style="margin:0 auto;">
+    <h2></h2>
+  </div>
+  <div style="margin:0 auto;">
+    <p>Scroll and Buy!</p>
+    <form action="/" method="POST" >
+      <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
+        <label for="query">Query:</label>      
       </div>
-    </div>
-    <div id="PolarisPortalsContainer"></div>
-  </div>
-
-  <div>
-    <form method="post" novalidate="">
-      <div class="Polaris-FormLayout">
-        <div class="Polaris-FormLayout__Item">
-          <div class="">
-            <div class="Polaris-Labelled__LabelWrapper">
-              <div class="Polaris-Label"><label id="PolarisTextField4Label" for="PolarisTextField4" class="Polaris-Label__Text">App URL</label></div>
-            </div>
-            <div class="Polaris-Connected">
-              <div class="Polaris-Connected__Item Polaris-Connected__Item--primary">
-                <div class="Polaris-TextField"><input id="PolarisTextField4" class="Polaris-TextField__Input" type="url" aria-labelledby="PolarisTextField4Label" aria-invalid="false" value="">
-                  <div class="Polaris-TextField__Backdrop"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="Polaris-FormLayout__Item"><button class="Polaris-Button" type="submit"><span class="Polaris-Button__Content"><span class="Polaris-Button__Text">Submit</span></span></button></div>
-      </div><span class="Polaris-VisuallyHidden"><button type="submit" aria-hidden="true" tabindex="-1">Submit</button></span>
+      <div style="margin-bottom: 1%;">
+        <input type="text" value="<%= query %>" name="query" style="width:30%;"/>      
+      </div>
+      <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
+        <label for="path">Path:</label>
+      </div>
+      <div style="margin-bottom: 1%;">
+        <input type="text" value="<%= path %>" name="path" style="width:10%;" />
+      </div>
+      <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
+        <label for="regex">Regex:</label>
+      </div>
+      <div style="margin-bottom: 1%;">
+        <input type="text" value="<%= regex %>" name="regex" style="width:50%;"/>
+      </div>
+      <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
+        <label for="regex">Start:</label>
+      </div>
+      <div style="margin-bottom: 1%;">
+        <input type="text" value="<%= start %>" name="start" style="width:10%;"/>
+      </div>
+  
+      <div style="text-align: center;">
+        <input type="submit" value="Search & Crawl"/>  
+      </div>
+  
+      <p style="text-align: center;"><a href="https://www.google.com/search?q=<%= query %>" target="_blank">Original search</a></p>
+     
     </form>
-    <div id="PolarisPortalsContainer"></div>
   </div>
 
 </body>

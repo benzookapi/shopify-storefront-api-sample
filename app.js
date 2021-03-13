@@ -54,8 +54,14 @@ router.get('/one_pager',  async (ctx, next) => {
 });
 
 // https://shopify.dev/docs/storefront-api/getting-started
-const callGraphql = function(ctx, req) {
-  console.log(`callGraphql ${API_ENDPOINT} ${STOREFRONT_TOKEN} ${JSON.stringify(req)}`);
+const callGraphql = function(ctx, req, vars = null) {
+  let api_req = {};
+  // Set Gqphql string into query field of the JSON  as string
+  api_req.query = req.replace(/\n/g, '');
+  if (vars != null) {
+    api_req.variables = vars;
+  }
+  console.log(`callGraphql ${API_ENDPOINT} ${STOREFRONT_TOKEN} ${JSON.stringify(api_req)}`);
   return new Promise(function(resolve, reject) { 
     // Success callback
     let then_func = function(res){
@@ -71,7 +77,7 @@ const callGraphql = function(ctx, req) {
     headers['Accept'] = 'application/json';
     headers['Content-Type'] = 'application/json'; // for JSON.stringify otherwise application/graphql
     headers['X-Shopify-Storefront-Access-Token'] = STOREFRONT_TOKEN;
-    ctx.post(API_ENDPOINT, req, headers).then(then_func).catch(catch_func);   
+    ctx.post(API_ENDPOINT, api_req, headers).then(then_func).catch(catch_func);   
   });
 };   
 

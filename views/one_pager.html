@@ -26,41 +26,39 @@
   
       "Downalod CSV" saves the CSV file of the current execution result with hit URLs and data.
       <h2>Best practice</h2>
-      Currently the maximum number of search paging is set <%= count %> and each page has 10 records. 
-      Increment "Start" by <%= 10 + count * 10 %> after one excution may provide all data for huge results.
-      (1 -> <%= 1 + (10 + count * 10) %> -> <%= 1 + (10 + count * 10)*2 %> -> <%= 1 + (10 + count * 10)*3 %> ...)
+      
     </pre>
     <form action="/" method="POST" >
       <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
         <label for="query">Query:</label>      
       </div>
       <div style="margin-bottom: 1%;">
-        <input type="text" value="<%= query %>" name="query" style="width:30%;"/>      
+        <input type="text" value="" name="query" style="width:30%;"/>      
       </div>
       <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
         <label for="path">Path:</label>
       </div>
       <div style="margin-bottom: 1%;">
-        <input type="text" value="<%= path %>" name="path" style="width:10%;" />
+        <input type="text" value="" name="path" style="width:10%;" />
       </div>
       <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
         <label for="regex">Regex:</label>
       </div>
       <div style="margin-bottom: 1%;">
-        <input type="text" value="<%= regex %>" name="regex" style="width:50%;"/>
+        <input type="text" value="" name="regex" style="width:50%;"/>
       </div>
       <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
         <label for="regex">Start:</label>
       </div>
       <div style="margin-bottom: 1%;">
-        <input type="text" value="<%= start %>" name="start" style="width:10%;"/>
+        <input type="text" value="" name="start" style="width:10%;"/>
       </div>
   
       <div style="text-align: center;">
         <input type="submit" value="Search & Crawl"/>  
       </div>
   
-      <p style="text-align: center;"><a href="https://www.google.com/search?q=<%= query %>" target="_blank">Original search</a></p>
+      <p style="text-align: center;"><a href="https://www.google.com/search?q=" target="_blank">Original search</a></p>
      
     </form>
   </div>

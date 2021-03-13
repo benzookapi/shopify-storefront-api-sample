@@ -51,12 +51,8 @@ router.get('/one_pager',  async (ctx, next) => {
             title
             price
             image {
-              originalSrc {
-                URL
-              }
-              transformedSrc {
-                URL
-              }
+              originalSrc
+              transformedSrc
             }
           }
         }

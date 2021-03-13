@@ -43,6 +43,10 @@ router.get('/one_pager',  async (ctx, next) => {
     product(id: "gid://shopify/Product/${product_id}") {
       title
       handle
+      featuredImage {
+        originalSrc
+        transformedSrc
+      }
       variants(first:1) {
         edges {
           node {
@@ -50,10 +54,6 @@ router.get('/one_pager',  async (ctx, next) => {
             storefrontId
             title
             price
-            image {
-              originalSrc
-              transformedSrc
-            }
           }
         }
       }    

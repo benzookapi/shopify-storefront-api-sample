@@ -6,12 +6,64 @@
 </head>
 <body>
 
-  <div style="display:block; margin:0 auto;">
-    
-    <img src="https://cdn.shopify.com/s/files/1/0064/0712/7062/products/ScreenShot2020-10-30at3.06.05PM.png?v=1604038027" />
-    
+  <div style="margin:0 auto;">
+    <pre style="padding: 0 0 0 30%;">
+      <h1>Google Search Scraper</h1>
+      "Query" is the search query for Google search.
+      "Path" is the sub path to add to each hit URL (https://xxx.com -> https://xxx.com/path).
+      "Regex" is the regular expression for getting data from each hit URL (the default one is for email address).
+      "Start" is the index of starting record of search result (1 by default means starting at the first record hit by the search).
+  
+      "Search & Crawl" starts google search with the input above and crawl each hit URL to scrape and 
+        get the target data based on "Regex". Note that this process does paging the search result based on the 
+        maximum number described below, so you might not have the all data with one execution 
+        (This is fror preventing from the code 429, as known as too many request error).
+        You may get the all data with multiple execution shifting "Start". See the details in the best practice below.
+  
+      "Refresh" shows the latest stats of scraping on how many URLs accessed and have the target data. 
+        We refresh automatically per minute and if you have no changes on the number, 
+        that means the scraping has ended for the current execution.
+  
+      "Downalod CSV" saves the CSV file of the current execution result with hit URLs and data.
+      <h2>Best practice</h2>
+      Currently the maximum number of search paging is set <%= count %> and each page has 10 records. 
+      Increment "Start" by <%= 10 + count * 10 %> after one excution may provide all data for huge results.
+      (1 -> <%= 1 + (10 + count * 10) %> -> <%= 1 + (10 + count * 10)*2 %> -> <%= 1 + (10 + count * 10)*3 %> ...)
+    </pre>
+    <form action="/" method="POST" >
+      <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
+        <label for="query">Query:</label>      
+      </div>
+      <div style="margin-bottom: 1%;">
+        <input type="text" value="<%= query %>" name="query" style="width:30%;"/>      
+      </div>
+      <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
+        <label for="path">Path:</label>
+      </div>
+      <div style="margin-bottom: 1%;">
+        <input type="text" value="<%= path %>" name="path" style="width:10%;" />
+      </div>
+      <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
+        <label for="regex">Regex:</label>
+      </div>
+      <div style="margin-bottom: 1%;">
+        <input type="text" value="<%= regex %>" name="regex" style="width:50%;"/>
+      </div>
+      <div style="width:30%; text-align: right; margin-bottom: 1%; float:left;">
+        <label for="regex">Start:</label>
+      </div>
+      <div style="margin-bottom: 1%;">
+        <input type="text" value="<%= start %>" name="start" style="width:10%;"/>
+      </div>
+  
+      <div style="text-align: center;">
+        <input type="submit" value="Search & Crawl"/>  
+      </div>
+  
+      <p style="text-align: center;"><a href="https://www.google.com/search?q=<%= query %>" target="_blank">Original search</a></p>
+     
+    </form>
   </div>
-    
 
 </body>
 </html>

@@ -18,9 +18,9 @@
 
 3. npm start
 
-4. access http;//localhost:3000
+4. access http://localhost:3000
 
-You can see same sample links.
+You can see some sample links.
 
 These samples all refer to the oficial Strorefont API docs
 https://shopify.dev/docs/storefront-api

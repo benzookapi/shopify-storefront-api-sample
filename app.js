@@ -88,8 +88,7 @@ router.get('/one_pager',  async (ctx, next) => {
     currency: api_res.data.node.variants.edges[0].node.priceV2.currencyCode,
     url: api_res.data.shop.primaryDomain.url,
     handle: handle,
-    variant_id: api_res.data.node.variants.edges[0].node.id,
-    thanks: ctx.request.query.thanks
+    variant_id: api_res.data.node.variants.edges[0].node.id
   });
 });
 

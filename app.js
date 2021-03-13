@@ -74,7 +74,6 @@ const callGraphql = function(ctx, req, vars = null) {
       return resolve(e);      
     };
     let headers = {};
-    headers['Accept'] = 'application/json';
     headers['Content-Type'] = 'application/json'; // for JSON.stringify otherwise application/graphql
     headers['X-Shopify-Storefront-Access-Token'] = STOREFRONT_TOKEN;
     ctx.post(API_ENDPOINT, api_req, headers).then(then_func).catch(catch_func);   

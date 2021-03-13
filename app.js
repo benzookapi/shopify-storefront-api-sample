@@ -10,7 +10,7 @@ const serve = require('koa-static');
 const router = new Router();
 const app = module.exports = new Koa();
 
-const API_ENDPOINT  = `${process.env.SHOPIFY_API_ENDPOINT}`; // https://YOUR_API_KEY:YOUR_API_PASSWORD@YOUR_MYSHOPIFY_DOMAIN/api/2021-01/graphql.json
+const API_ENDPOINT  = `${process.env.SHOPIFY_API_ENDPOINT}`; // https://YOUR_MYSHOPIFY_DOMAIN/api/graphql.json
 const STOREFRONT_TOKEN  = `${process.env.SHOPIFY_STOREFRONT_TOKEN}`; // COPIED_ONE_FROM_YOUR_PRIVATE_APP
 
 
@@ -35,17 +35,20 @@ router.get('/',  async (ctx, next) => {
 
 router.get('/one_pager',  async (ctx, next) => {  
   console.log("+++++++++ /one_pager ++++++++++");
+  let product_id = ctx.request.query.product_id;
   let api_res = await(callGraphql(ctx, `{
-    collections(first: 5) {
-      edges {
-        node {
-          id
-          handle
+    product(id: "gid://shopify/Product/${product_id}") {
+      title
+      handle
+      variants(first:1) {
+        edges {
+          node {
+            id
+            price
+            image
+          }
         }
-      }
-      pageInfo {
-        hasNextPage
-      }
+      }    
     }
   }`));
   console.log(`${JSON.stringify(api_res)}`);    

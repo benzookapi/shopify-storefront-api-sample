@@ -34,7 +34,8 @@ app.use(serve(__dirname + '/public'));
 
 router.get('/',  async (ctx, next) => {  
   console.log("+++++++++ / ++++++++++");
-  ctx.status = 200;
+  await ctx.render('index', {
+  });
 });
 
 router.get('/one_pager',  async (ctx, next) => {  

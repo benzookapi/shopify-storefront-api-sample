@@ -10,7 +10,7 @@ const serve = require('koa-static');
 const router = new Router();
 const app = module.exports = new Koa();
 
-const API_ENDPOINT  = `${process.env.SHOPIFY_API_ENDPOIN}`; // https://YOUR_API_KEY:YOUR_API_PASSWORD@YOUR_MYSHOPIFY_DOMAIN/admin/api/2021-01/graphql.json
+const API_ENDPOINT  = `${process.env.SHOPIFY_API_ENDPOINT}`; // https://YOUR_API_KEY:YOUR_API_PASSWORD@YOUR_MYSHOPIFY_DOMAIN/admin/api/2021-01/graphql.json
 const STOREFRONT_TOKEN  = `${process.env.SHOPIFY_STOREFRONT_TOKEN}`; // COPIED_ONE_FROM_YOUR_PRIVATE_APP
 
 

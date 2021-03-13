@@ -50,7 +50,14 @@ router.get('/one_pager',  async (ctx, next) => {
             storefrontId
             title
             price
-            image
+            image {
+              originalSrc {
+                URL
+              }
+              transformedSrc {
+                URL
+              }
+            }
           }
         }
       }    

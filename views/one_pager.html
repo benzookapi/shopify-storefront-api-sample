@@ -8,51 +8,52 @@
 
   <img src="https://cdn.shopify.com/s/files/1/0064/0712/7062/products/ScreenShot2020-10-30at3.06.05PM.png?v=1604038027">
 
-  <div class="title"><p class="title">テスト商品</p></div>
+  <div class="main"><p class="main">テスト商品</p></div>
 
-  <div class="title"><p class="title">1000</p></div>
+  <div class="main"><p class="main">1000</p></div>
 
 
-  <div style="margin:0 auto; width:800px;">
+  <div class="main">
 
   <form action="/" method="POST" >
     
-    <p style="text-align: center; font-size:x-large;">How many to buy?</p>
-    <div style="text-align: center;"><input type="text" value="1" name="amount" style="font-size: x-large; width:30%; text-align: center;"/></div>
+    <p class="section">How many to buy?</p>
+    <div class="field"><input type="text" value="1" name="amount" class="amount"/></div>
     
-    <p style="text-align: center; font-size:x-large;">Your name?</p>
-    <div style="text-align: left; width: 60%; margin:0 auto;">Firt Name:</div>
-    <div style="text-align: center;"><input type="text" value="" name="first_name"  style="font-size: x-large; width: 60%;"/></div>
-    <div style="text-align: left; width: 60%; margin:0 auto;">Last Name:</div>
-    <div style="text-align: center;"><input type="text" value="" name="last_name"  style="font-size: x-large; width: 60%;"/></div>
+    <p class="section">Your name?</p>
+    <div class="label name">Firt Name:</div>
+    <div class="field"><input type="text" value="Fy" name="first_name"  class="name" /></div>
+    <div class="label name">Last Name:</div>
+    <div class="field"><input type="text" value="Shopi" name="last_name" class="name"/></div>
     
-    <p style="text-align: center; font-size:x-large;">Where to ship?</p>
-
-    <div style="text-align: left; width: 30%; margin:0 auto;">Country:</div>
-    <div style="text-align: center;">
-      <select type="select" value="" name="country"  style="font-size: x-large; width: 30%;">
-        <option value="Japan">Japan</option>
-        <option value="Japan">United States</option>
-        <option value="Japan">Canada</option>
-        <option value="Japan">China</option>
-        <option value="Japan">Germany</option>
-        <option value="Japan">France</option>
+    <p class="section">Where to ship?</p>
+    <div class="label ship">Country:</div>
+    <div class="field">
+      <select type="select" value="" name="country" class="ship">
+        <option value="Japan" selected>Japan</option>
+        <option value="United States">United States</option>
+        <option value="Canada">Canada</option>
+        <option value="China">China</option>
+        <option value="Germany">Germany</option>
+        <option value="France">France</option>
       </select>
     </div>
-    <div style="text-align: left; width: 30%; margin:0 auto;">ZIP code:</div>
-    <div style="text-align: center;"><input type="text" value="" name="zip"  style="font-size: x-large; width: 30%;"/></div>
-    
+    <div class="label ship">ZIP code:</div>
+    <div class="field"><input type="text" value="1500001" name="zip"  class="ship" /></div>
+    <div class="label ship2">Province:</div>
+    <div class="field"><input type="text" value="Tokyo" name="province"  class="ship2" /></div>
+    <div class="label ship2">City:</div>
+    <div class="field"><input type="text" value="Shibuya-ku" name="city"  class="ship2" /></div>
+    <div class="label ship3">Address1:</div>
+    <div class="field"><input type="text" value="Aoyama 1-2-3" name="address1"  class="ship3" /></div>
+    <div class="label ship3">Address2:</div>
+    <div class="field"><input type="text" value="Building 1-101" name="address2"  class="ship3" /></div>
+    <div class="label ship2">Phone:</div>
+    <div class="field"><input type="text" value="03-1234-5678" name="phone"  class="ship2" /></div>    
 
+    <p class="section"><input type="submit" value="Buy now!" /></p>    
     
-
-    
-    
-
-    <div style="text-align: center;">
-      <input type="submit" value="Search & Crawl"/>  
-    </div>
-
-    <p style="text-align: center;"><a href="https://www.google.com/search?q=" target="_blank">Original search</a></p>
+    <p class="section2"><a href="https://www.google.com/search?q=" target="_blank">See at the original page</a></p>
    
   </form>
 
@@ -67,15 +68,77 @@ img {
   width:800px;
 }
 
-div.title {
+input {
+  font-size: 40px;
+}
+
+select {
+  font-size: 40px;
+}
+
+div.main {
   margin:0 auto; 
   width:800px;
 }
 
-p.title {
+p.main {
   text-align: center; 
   font-size:100px;
 }
+
+p.section {
+  text-align: center; 
+  font-size: 80px;
+}
+
+p.section2 {
+  text-align: center; 
+  font-size: 40px;
+}
+
+div.label {
+  text-align: left; 
+  margin:0 auto;
+  font-size: 30px;
+}
+
+div.field {
+  text-align: center;
+}
+
+.amount {
+  width:30%; 
+}
+
+input.amount {  
+  text-align: center;
+  
+}
+
+.name {
+  width: 60%;
+}
+
+.ship {
+  width: 30%;
+}
+
+.ship2 {
+  width: 40%;
+}
+
+.ship3 {
+  width: 70%;
+}
+
+input[type=submit] {
+  width:70%;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px;
+  border-color:rgb(0, 0, 0);
+  border-style: solid;
+}
+
 </style>
     
 

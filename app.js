@@ -154,7 +154,7 @@ router.post('/checkout', async (ctx, next) => {
   /*
   // If you want to provide shipping rate seleciton at your end, you need the following code.
   const checkout_id = api_res.data.checkoutCreate.checkout.id;
-  // You need to poll this call until 'ready' gets true.
+  // ****** You need to poll this call until 'ready' gets true (immediate call returns false). ******
   api_res = await(callGraphql(ctx, `{
     node(id: "${checkout_id}") {
       id

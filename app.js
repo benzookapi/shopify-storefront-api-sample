@@ -54,17 +54,17 @@ router.get('/one_pager',  async (ctx, next) => {
 });
 
 // https://shopify.dev/docs/storefront-api/getting-started
-const callGraphQl = function(ctx, req) {
-  console.log(`callGraphQl ${API_ENDPOINT} ${STOREFRONT_TOKEN} ${JSON.stringify(req)}`);
+const callGraphql = function(ctx, req) {
+  console.log(`callGraphql ${API_ENDPOINT} ${STOREFRONT_TOKEN} ${JSON.stringify(req)}`);
   return new Promise(function(resolve, reject) { 
     // Success callback
     let then_func = function(res){
-      console.log(`callGraphQl Success: ${res}`);
+      console.log(`callGraphql Success: ${res}`);
       return resolve(JSON.parse(res));
     };
     // Failure callback
     let catch_func = function(e){
-      console.log(`callGraphQl Error: ${e}`);
+      console.log(`callGraphql Error: ${e}`);
       return resolve(e);      
     };
     let headers = {};

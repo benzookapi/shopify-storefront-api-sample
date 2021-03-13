@@ -55,7 +55,7 @@ router.get('/one_pager',  async (ctx, next) => {
         }
       }    
     }
-  }`, false));
+  }`, null, false));
   console.log(`${JSON.stringify(api_res)}`);        
   await ctx.render('one_pager', {
   });

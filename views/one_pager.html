@@ -6,19 +6,23 @@
 </head>
 <body>
 
-  <img src="https://cdn.shopify.com/s/files/1/0064/0712/7062/products/ScreenShot2020-10-30at3.06.05PM.png?v=1604038027">
+  <img src="<%= image %>">
 
-  <div class="main"><p class="main">テスト商品</p></div>
+  <div class="main"><p class="main"><%= title %></p></div>
 
-  <div class="main"><p class="main">1000</p></div>
+  <div class="main"><p class="main"><%= price %> <%= currency %></p></div>
 
 
   <div class="main">
 
-  <form action="/" method="POST" >
+  <form action="/checkout" method="POST" >
     
     <p class="section">How many to buy?</p>
-    <div class="field"><input type="text" value="1" name="amount" class="amount"/></div>
+    <div class="field"><input type="text" value="1" name="quantity" class="quantity"/></div>
+
+    <p class="section">Your email?</p>
+    <div class="label email">Email:</div>
+    <div class="field"><input type="text" value="your_email@hoge.com" name="email" class="email" /></div>
     
     <p class="section">Your name?</p>
     <div class="label name">Firt Name:</div>
@@ -49,11 +53,17 @@
     <div class="label ship3">Address2:</div>
     <div class="field"><input type="text" value="Building 1-101" name="address2"  class="ship3" /></div>
     <div class="label ship2">Phone:</div>
-    <div class="field"><input type="text" value="03-1234-5678" name="phone"  class="ship2" /></div>    
+    <div class="field"><input type="text" value="03-1234-5678" name="phone"  class="ship2" /></div> 
+    
+    <p class="section">Any comments?</p>
+    <div class="field"><input type="text" value="Thank you for the awesome goods!" name="note" class="note" /></div>
+
+
+    <input type="hidden" value="<%= variant_id %>" name="variant_id">
 
     <p class="section"><input type="submit" value="Buy now!" /></p>    
     
-    <p class="section2"><a href="https://www.google.com/search?q=" target="_blank">See at the original page</a></p>
+    <p class="section2"><a href="<%= url %>/products/<%= handle %>" target="_blank">See at the original page</a></p>
    
   </form>
 
@@ -106,13 +116,16 @@ div.field {
   text-align: center;
 }
 
-.amount {
+.quantity {
   width:30%; 
 }
 
-input.amount {  
-  text-align: center;
-  
+input.quantity {  
+  text-align: center;  
+}
+
+.email {
+  width: 60%;
 }
 
 .name {
@@ -129,6 +142,10 @@ input.amount {
 
 .ship3 {
   width: 70%;
+}
+
+.note {
+  width: 100%;
 }
 
 input[type=submit] {

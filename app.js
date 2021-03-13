@@ -37,31 +37,117 @@ router.get('/',  async (ctx, next) => {
 
 router.get('/one_pager',  async (ctx, next) => {  
   console.log("+++++++++ /one_pager ++++++++++");
-  let product_id = ctx.request.query.product_id;
+  const handle = ctx.request.query.handle;
 
   let api_res = await(callGraphql(ctx, `{
-    product(id: "gid://shopify/Product/${product_id}") {
-      title
-      handle
-      featuredImage {
-        originalSrc
-        transformedSrc
-      }
-      variants(first:1) {
-        edges {
-          node {
-            id
-            storefrontId
-            title
-            price
-          }
-        }
-      }    
+    productByHandle(handle: "${handle}") {
+      id
     }
-  }`, null, false));
-  console.log(`${JSON.stringify(api_res)}`);        
+  }`));
+  console.log(`${JSON.stringify(api_res)}`); 
+
+  const product_id = api_res.data.productByHandle.id;
+  api_res = await(callGraphql(ctx, `{
+    shop {
+      name
+      primaryDomain {
+        url
+      }
+    }
+    node(id: "${product_id}") {
+      id
+      ... on Product {
+        title
+        variants(first:1) {
+          edges {
+            node {
+              id
+              image {
+                originalSrc
+              }
+              title
+              priceV2 {
+                amount
+                currencyCode
+              }
+            }
+          }          
+        }
+      }
+    }
+  }`));
+  console.log(`${JSON.stringify(api_res)}`);  
+
   await ctx.render('one_pager', {
+    image: api_res.data.node.variants.edges[0].node.image.originalSrc,
+    title: api_res.data.node.title,
+    price: api_res.data.node.variants.edges[0].node.priceV2.amount,
+    currency: api_res.data.node.variants.edges[0].node.priceV2.currencyCode,
+    url: api_res.data.shop.primaryDomain.url,
+    handle: handle,
+    variant_id: api_res.data.node.variants.edges[0].node.id
   });
+});
+
+router.post('/checkout', async (ctx, next) => {
+  console.log("******** checkout ********");
+
+  const quantity = ctx.request.body.quantity; 
+
+  const email = ctx.request.body.email;
+  
+  const first_name = ctx.request.body.first_name; 
+  const last_name = ctx.request.body.last_name; 
+
+  const country = ctx.request.body.country; 
+  const zip = ctx.request.body.zip; 
+  const province = ctx.request.body.province; 
+  const city = ctx.request.body.city; 
+  const address1 = ctx.request.body.address1; 
+  const address2 = ctx.request.body.address2; 
+  const phone = ctx.request.body.phone; 
+
+  const note = ctx.request.body.note; 
+
+  const variant_id = ctx.request.body.variant_id;
+
+  let api_res = await(callGraphql(ctx, `mutation checkoutCreate($input: CheckoutCreateInput!) {
+    checkoutCreate(input: $input) {
+      checkout {
+        id
+        webUrl
+      }
+      checkoutUserErrors {
+        code
+        field
+        message
+      }
+    }
+  }`, {
+    "input": {
+      "email": email,
+      "lineItems": [{
+        "variantId": variant_id,
+        "quantity": parseInt(quantity)
+      }],
+      "shippingAddress": {
+        "address1": address1,
+        "address2": address2,
+        "city": city,
+        "country": country,
+        "firstName": first_name,
+        "lastName": last_name,
+        "phone": phone,
+        "province": province,
+        "zip": zip
+      },
+      "note": note
+    }
+  }));
+  console.log(`${JSON.stringify(api_res)}`); 
+
+  ctx.redirect(api_res.data.checkoutCreate.checkout.webUrl);
+
 });
 
 // https://shopify.dev/docs/storefront-api/getting-started

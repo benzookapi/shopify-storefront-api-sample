@@ -149,7 +149,57 @@ router.post('/checkout', async (ctx, next) => {
   }));
   console.log(`${JSON.stringify(api_res)}`); 
 
-  ctx.redirect(api_res.data.checkoutCreate.checkout.webUrl);
+  const web_url = api_res.data.checkoutCreate.checkout.webUrl;
+
+  /*
+  // If you want to provide shipping rate seleciton at your end, you need the following code.
+  const checkout_id = api_res.data.checkoutCreate.checkout.id;
+  // You need to poll this call until 'ready' gets true.
+  api_res = await(callGraphql(ctx, `{
+    node(id: "${checkout_id}") {
+      id
+      ... on Checkout {
+        availableShippingRates { 
+          ready
+          shippingRates {
+            handle
+            title
+            priceV2 {
+              amount
+              currencyCode
+            }     
+          }           
+        }
+      }
+    }
+  }`));
+  console.log(`${JSON.stringify(api_res)}`);  
+
+  const shipping_rate_handle = api_res.data.node.availableShippingRates.shippingRates[0].hanlde;
+  api_res = await(callGraphql(ctx, `mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {
+    checkoutShippingLineUpdate(
+      checkoutId: $checkoutId
+      shippingRateHandle: $shippingRateHandle
+    ) {
+      checkout {
+        id
+        webUrl
+      }
+      checkoutUserErrors {
+        code
+        field
+        message
+      }
+    }
+  }`, {
+    "checkoutId": checkout_id,
+    "shippingRateHandle": shipping_rate_handle
+  }));
+  console.log(`${JSON.stringify(api_res)}`); 
+  const web_url = api_res.data.checkoutShippingLineUpdate.checkout.webUrl;
+  */
+
+  ctx.redirect(web_url);
 
 });
 

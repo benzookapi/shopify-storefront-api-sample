@@ -35,7 +35,7 @@ router.get('/',  async (ctx, next) => {
 
 router.get('/one_pager',  async (ctx, next) => {  
   console.log("+++++++++ /one_pager ++++++++++");
-  let api_res = await(callGraphql(ctx, shop, `{
+  let api_res = await(callGraphql(ctx, `{
     collections(first: 5) {
       edges {
         node {

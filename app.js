@@ -41,7 +41,7 @@ router.get('/',  async (ctx, next) => {
 router.get('/one_pager',  async (ctx, next) => {  
   console.log("+++++++++ /one_pager ++++++++++");
   const handle = ctx.request.query.handle;
-
+  
   let api_res = await(callGraphql(ctx, `{
     productByHandle(handle: "${handle}") {
       id
@@ -88,7 +88,8 @@ router.get('/one_pager',  async (ctx, next) => {
     currency: api_res.data.node.variants.edges[0].node.priceV2.currencyCode,
     url: api_res.data.shop.primaryDomain.url,
     handle: handle,
-    variant_id: api_res.data.node.variants.edges[0].node.id
+    variant_id: api_res.data.node.variants.edges[0].node.id,
+    thanks: ctx.request.query.thanks
   });
 });
 

@@ -54,12 +54,17 @@
     <div class="field"><input type="text" value="Building 1-101" name="address2"  class="ship3" /></div>
     <div class="label ship2">Phone:</div>
     <div class="field"><input type="text" value="03-1234-5678" name="phone"  class="ship2" /></div> 
+
+    <p class="section">Which shipping rate?</p>
+    <div class="label rate"><input type="radio" name="rate" id="chosen" value="chosen" checked="checked"><label for="chosen">Chosen one in Shopify checkout</label></div>
+    <div class="label rate"><input type="radio" name="rate" id="found" value="found"><label for="found">Found one by this program</label></div>
     
     <p class="section">Any comments?</p>
     <div class="field"><input type="text" value="Thank you for the awesome goods!" name="note" class="note" /></div>
 
 
     <input type="hidden" value="<%= variant_id %>" name="variant_id">
+    <input type="hidden" value="<%= handle %>" name="handle">
 
     <p class="section"><input type="submit" value="Buy now!" /></p>    
     
@@ -89,6 +94,11 @@ select {
   border:1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+label {  
+  font-size: 50px;
+  margin-bottom: 20px;
 }
 
 div.main {
@@ -149,6 +159,15 @@ input.quantity {
   width: 80%;
 }
 
+.rate {
+  width: 80%;
+}
+
+input[type=radio] {
+  -webkit-transform-origin: right bottom;
+  -webkit-transform: scale( 2 , 2 );
+}
+
 .note {
   width: 100%;
 }
@@ -159,6 +178,7 @@ input[type=submit] {
   -webkit-appearance: none; 
   background-color: darkgrey;
 }
+
 
 </style>
     

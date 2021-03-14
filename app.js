@@ -110,9 +110,12 @@ router.post('/checkout', async (ctx, next) => {
   const address2 = ctx.request.body.address2; 
   const phone = ctx.request.body.phone; 
 
+  const rate = ctx.request.body.rate;
+
   const note = ctx.request.body.note; 
 
   const variant_id = ctx.request.body.variant_id;
+  const handle = ctx.request.body.handle;
 
   let api_res = await(callGraphql(ctx, `mutation checkoutCreate($input: CheckoutCreateInput!) {
     checkoutCreate(input: $input) {
@@ -144,61 +147,73 @@ router.post('/checkout', async (ctx, next) => {
         "province": province,
         "zip": zip
       },
-      "note": note
+      "note": note,
+      "customAttributes": [{ // Set the source-url as cart attributes used by Liquid in the addtional script (https://shopify.dev/docs/themes/liquid/reference/objects/checkout#checkout-attributes)
+        "key": "source-url",
+        "value": `${ctx.request.origin}/one_pager?handle=${handle}`
+      }]
     }
   }));
   console.log(`${JSON.stringify(api_res)}`); 
-
-  const web_url = api_res.data.checkoutCreate.checkout.webUrl;
-
-  /*
-  // If you want to provide shipping rate seleciton at your end, you need the following code.
+  
   const checkout_id = api_res.data.checkoutCreate.checkout.id;
-  // ****** You need to poll this call until 'ready' gets true (immediate call returns false). ******
-  api_res = await(callGraphql(ctx, `{
-    node(id: "${checkout_id}") {
-      id
-      ... on Checkout {
-        availableShippingRates { 
-          ready
-          shippingRates {
-            handle
-            title
-            priceV2 {
-              amount
-              currencyCode
-            }     
-          }           
+  const web_url = api_res.data.checkoutCreate.checkout.webUrl;   
+  
+  // If the user selcted 'Found shipping rate', try to get the first found shipping rate to apply to the created checkout above, otherwise they choose in Shopify checkout page.
+  if (rate == 'found') {
+    // ****** You need to poll this call until 'ready' gets true (immediate call returns false). ******
+    let begin = Date.now();
+    let ready = false;
+    while (!ready || Date.now() - begin < 1000 * 10) {
+      api_res = await(callGraphql(ctx, `{
+        node(id: "${checkout_id}") {
+          id
+          ... on Checkout {
+            availableShippingRates { 
+              ready
+              shippingRates {
+                handle
+                title
+                priceV2 {
+                  amount
+                  currencyCode
+                }     
+              }           
+            }
+          }
         }
-      }
+      }`));
+      console.log(`${JSON.stringify(api_res)}`);
+      ready = api_res.data.node.availableShippingRates.ready;
     }
-  }`));
-  console.log(`${JSON.stringify(api_res)}`);  
 
-  const shipping_rate_handle = api_res.data.node.availableShippingRates.shippingRates[0].hanlde;
-  api_res = await(callGraphql(ctx, `mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {
-    checkoutShippingLineUpdate(
-      checkoutId: $checkoutId
-      shippingRateHandle: $shippingRateHandle
-    ) {
-      checkout {
-        id
-        webUrl
-      }
-      checkoutUserErrors {
-        code
-        field
-        message
-      }
-    }
-  }`, {
-    "checkoutId": checkout_id,
-    "shippingRateHandle": shipping_rate_handle
-  }));
-  console.log(`${JSON.stringify(api_res)}`); 
-  const web_url = api_res.data.checkoutShippingLineUpdate.checkout.webUrl;
-  */
-
+    // If some shipping rates are avaiable, use the first found one.
+    if (api_res.data.node.availableShippingRates.shippingRates.length > 0) {
+      const shipping_rate_handle = api_res.data.node.availableShippingRates.shippingRates[0].handle;
+      api_res = await(callGraphql(ctx, `mutation checkoutShippingLineUpdate($checkoutId: ID!, $shippingRateHandle: String!) {
+        checkoutShippingLineUpdate(
+          checkoutId: $checkoutId
+          shippingRateHandle: $shippingRateHandle
+        ) {
+            checkout {
+              id
+              webUrl
+            }
+            checkoutUserErrors {
+              code
+              field
+              message
+            }
+          }
+        }`, {
+          "checkoutId": checkout_id,
+          "shippingRateHandle": shipping_rate_handle
+      }));
+      console.log(`${JSON.stringify(api_res)}`);
+    } 
+  }
+  
+  // Redirect to the web url to complete the checkout.
   ctx.redirect(web_url);
 
 });

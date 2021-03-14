@@ -36,6 +36,7 @@ https://shopify.dev/docs/storefront-api
     ```
   
     For the custom attributes, check this link: https://shopify.dev/docs/themes/liquid/reference/objects/checkout#checkout-attributes
+    
     For 'Additonal Scripts': https://help.shopify.com/en/manual/orders/status-tracking/customize-order-status
 
 2. In the one pager checkout, if you select 'Found one by this program' for the shipping rate, this program gets the first one of available shipping rates by GraphQL to apply to the checkout which requires the polling procees of the query for 'Checkout' object until its 'ready' field turns true. Given a shipping rate, Shopify checkout shows the final payment method page directly skipping the rate selection.

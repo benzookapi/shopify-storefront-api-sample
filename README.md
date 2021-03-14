@@ -27,7 +27,7 @@ https://shopify.dev/docs/storefront-api
 
 ## TIPS
 
-1. In the one pager checkout sample (/one_pager?handle=YOUR_PRODUCT_HANDLE), the comments goes to the order note and the original hosted URL of this program gets stored as 'source-url' as custom attributes below to redirect buyers to the original page using 'Additonal Scripts' with Liquid.
+1. In the one pager checkout sample (/one_pager?handle=YOUR_PRODUCT_HANDLE), the comments goes to the order note and the hosted URL of this program gets stored as 'source-url' as custom attributes to redirect buyers to the original page using 'Additonal Scripts' with Liquid.
     The sample codes of 'Additonal Scripts' are as follows:
     ```
     {% if checkout.attributes.source-url %}
@@ -36,10 +36,11 @@ https://shopify.dev/docs/storefront-api
     ```
   
     For the custom attributes, check this link: https://shopify.dev/docs/themes/liquid/reference/objects/checkout#checkout-attributes
+    For 'Additonal Scripts': https://help.shopify.com/en/manual/orders/status-tracking/customize-order-status
 
-2. In the one pager checkout above, if you select 'Found one by this program' for the shipping rate, this program gets the first one of available shipping rates to use for the checkyout which requires the polling the GraphQL query for 'Checkout' until its 'ready' field turns true. Given a shipping rate, Shopify checkout shows the final payment method page directly skipping the rate selection.
+2. In the one pager checkout, if you select 'Found one by this program' for the shipping rate, this program gets the first one of available shipping rates by GraphQL to apply to the checkout which requires the polling procees of the query for 'Checkout' object until its 'ready' field turns true. Given a shipping rate, Shopify checkout shows the final payment method page directly skipping the rate selection.
 
-    For the polling for shipping rate by GraphQL, see this link: https://shopify.dev/docs/storefront-api/reference/checkouts/availableshippingrates
+    For the polling of available shipping rate query in GraphQL, see this link: https://shopify.dev/docs/storefront-api/reference/checkouts/availableshippingrates
 
 
 

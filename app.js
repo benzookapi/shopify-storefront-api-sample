@@ -164,7 +164,7 @@ router.post('/checkout', async (ctx, next) => {
     // ****** You need to poll this call until 'ready' gets true (immediate call returns false). ******
     let begin = Date.now();
     let ready = false;
-    while (!ready || Date.now() - begin < 1000 * 10) {
+    while (!ready || Date.now() - begin < 1000 * 10) { // THIS IS BLOCKING CODE WITHOUT INTERVALS, DO NOT USE IN PRODUCTION!
       api_res = await(callGraphql(ctx, `{
         node(id: "${checkout_id}") {
           id

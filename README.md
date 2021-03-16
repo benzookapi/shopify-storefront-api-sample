@@ -42,6 +42,8 @@ https://shopify.dev/docs/storefront-api
 2. In the one pager checkout, if you select 'Found one by this program' for the shipping rate, this program gets the first one of available shipping rates by GraphQL to apply to the checkout which requires the polling procees of the query for 'Checkout' object until its 'ready' field turns true. Given a shipping rate, Shopify checkout shows the final payment method page directly skipping the rate selection.
 
     For the polling of available shipping rate query in GraphQL, see this link: https://shopify.dev/docs/storefront-api/reference/checkouts/availableshippingrates
+    
+    **Note that this sample code's polling is blocking in while loop with no interval at the server side which should not be implemented in real product or service code! (You need to have intervals in the polling which should be non-blocking process)**
 
 
 

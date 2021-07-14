@@ -225,10 +225,10 @@ router.post('/carrier_service',  async (ctx, next) => {
   ctx.body = {
     "rates": [
         {
-            "service_name": "canadapost-overnight",
-            "service_code": "ON",
+            "service_name": "Service name",
+            "service_code": "Service_code",
             "total_price": "129500",
-            "description": "This is the fastest option by far",
+            "description": "Description",
             "currency": "JPY",
             "min_delivery_date": "2013-04-12 14:48:45 -0400",
             "max_delivery_date": "2013-04-12 14:48:45 -0400"

@@ -220,7 +220,7 @@ router.post('/checkout', async (ctx, next) => {
 
 router.post('/carrier_service',  async (ctx, next) => {  
   console.log("+++++++++ /carrier_service ++++++++++");
-  console.log(`${JSON.stringify(ctx.request)}`);
+  console.log(`${JSON.stringify(ctx.request.body)}`);
   //ctx.body = "OK";
   ctx.body = {
     "service_name": 'Service Name',

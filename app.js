@@ -229,7 +229,7 @@ router.post('/carrier_service',  async (ctx, next) => {
         "description": 'Description',
         "service_code": 'Service_Code',
         "currency": 'JPY',
-        "total_price": 777700
+        "total_price": '777700'
       }
     ]
   }

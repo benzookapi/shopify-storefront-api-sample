@@ -221,7 +221,14 @@ router.post('/checkout', async (ctx, next) => {
 router.get('/carrier_service',  async (ctx, next) => {  
   console.log("+++++++++ /carrier_service ++++++++++");
   console.log(`${JSON.stringify(ctx.request)}`);
-  ctx.body = "OK";
+  //ctx.body = "OK";
+  ctx.body = {
+    "service_name": 'Service Name',
+    "description": 'Description',
+    "service_code": 'Service_Code',
+    "currency": 'JPY',
+    "total_price": 777700
+  }
 });
 
 // https://shopify.dev/docs/storefront-api/getting-started

@@ -218,6 +218,12 @@ router.post('/checkout', async (ctx, next) => {
 
 });
 
+router.get('/carrier_service',  async (ctx, next) => {  
+  console.log("+++++++++ /carrier_service ++++++++++");
+  console.log(`${JSON.stringify(ctx.request)}`);
+  ctx.body = "OK";
+});
+
 // https://shopify.dev/docs/storefront-api/getting-started
 const callGraphql = function(ctx, req, vars = null, storefront = true) {
   let endpoint = STOREFRONT_ENDPOINT;

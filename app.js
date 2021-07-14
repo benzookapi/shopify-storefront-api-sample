@@ -218,7 +218,7 @@ router.post('/checkout', async (ctx, next) => {
 
 });
 
-router.get('/carrier_service',  async (ctx, next) => {  
+router.post('/carrier_service',  async (ctx, next) => {  
   console.log("+++++++++ /carrier_service ++++++++++");
   console.log(`${JSON.stringify(ctx.request)}`);
   //ctx.body = "OK";

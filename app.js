@@ -257,7 +257,7 @@ router.post('/carrier_service',  async (ctx, next) => {
 });
 
 // Demo code for https://shopify.dev/api/admin/graphql/reference/shipping-and-fulfillment/fulfillmentservicecreate
-router.post('/fulfillment_service',  async (ctx, next) => {  
+router.get('/fulfillment_service',  async (ctx, next) => {  
   console.log("+++++++++ /fullfilment_service ++++++++++");
   console.log(`${JSON.stringify(ctx.request.body)}`);  
   ctx.body = JSON.stringify(ctx.request.body);

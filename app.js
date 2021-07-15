@@ -221,18 +221,36 @@ router.post('/checkout', async (ctx, next) => {
 router.post('/carrier_service',  async (ctx, next) => {  
   console.log("+++++++++ /carrier_service ++++++++++");
   console.log(`${JSON.stringify(ctx.request.body)}`);
-  //ctx.body = "OK";
+  //WRIGHT THE SHIPPING RATE CALC. HERE!
+  /**
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   * 
+   */
   ctx.body = {
     "rates": [
         {
-            "service_name": "Service name",
-            "service_code": "Service_code",
-            "total_price": "129500",
-            "description": "Description",
+            "service_name": "サービスその１",
+            "service_code": "サービスコード01",
+            "total_price": "77700",
+            "description": "説明その１",
             "currency": "JPY",
             "min_delivery_date": "2013-04-12 14:48:45 -0400",
             "max_delivery_date": "2013-04-12 14:48:45 -0400"
-        }
+        },
+        {
+          "service_name": "サービスその２",
+          "service_code": "サービスコード02",
+          "total_price": "88800",
+          "description": "説明その２",
+          "currency": "JPY",
+          "min_delivery_date": "2013-04-12 14:48:45 -0400",
+          "max_delivery_date": "2013-04-12 14:48:45 -0400"
+      }
     ]
  };
 });

@@ -218,6 +218,7 @@ router.post('/checkout', async (ctx, next) => {
 
 });
 
+// Demo code for https://shopify.dev/api/admin/rest/reference/shipping-and-fulfillment/carrierservice
 router.post('/carrier_service',  async (ctx, next) => {  
   console.log("+++++++++ /carrier_service ++++++++++");
   console.log(`${JSON.stringify(ctx.request.body)}`);
@@ -253,6 +254,13 @@ router.post('/carrier_service',  async (ctx, next) => {
       }
     ]
  };
+});
+
+// Demo code for https://shopify.dev/api/admin/graphql/reference/shipping-and-fulfillment/fulfillmentservicecreate
+router.get('/fulfillment_service',  async (ctx, next) => {  
+  console.log("+++++++++ /fullfilment_service ++++++++++");
+  console.log(`${JSON.stringify(ctx.request.body)}`);  
+  ctx.body = JSON.stringify(ctx.request.body);
 });
 
 // https://shopify.dev/docs/storefront-api/getting-started

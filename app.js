@@ -262,6 +262,16 @@ router.get('/fulfillment_service',  async (ctx, next) => {
   console.log(`${JSON.stringify(ctx.request.body)}`);  
   ctx.body = JSON.stringify(ctx.request.body);
 });
+router.get('/fulfillment_service/fetch_stock.json',  async (ctx, next) => {  
+  console.log("+++++++++ /fullfilment_service/fetch_stock.json ++++++++++");
+  console.log(`${JSON.stringify(ctx.request.body)}`);  
+  ctx.body = JSON.stringify(ctx.request.body);
+});
+router.post('/fulfillment_service/fulfillment_order_notification',  async (ctx, next) => {  
+  console.log("+++++++++ /fullfilment_service/fulfillment_order_notification ++++++++++");
+  console.log(`${JSON.stringify(ctx.request.body)}`);  
+  ctx.body = JSON.stringify(ctx.request.body);
+});
 
 // https://shopify.dev/docs/storefront-api/getting-started
 const callGraphql = function(ctx, req, vars = null, storefront = true) {

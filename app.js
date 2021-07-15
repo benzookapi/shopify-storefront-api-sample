@@ -257,6 +257,19 @@ router.post('/carrier_service',  async (ctx, next) => {
 });
 
 // Demo code for https://shopify.dev/api/admin/graphql/reference/shipping-and-fulfillment/fulfillmentservicecreate
+/**
+ mutation fulfillmentServiceCreate {
+  fulfillmentServiceCreate(name: "おかむらフルフィルメント３", callbackUrl: "https://shopify-storefront-api-sample.herokuapp.com/fulfillment_service",  trackingSupport: true, fulfillmentOrdersOptIn: true, inventoryManagement: true) {
+    fulfillmentService {
+      id
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+ */
 router.get('/fulfillment_service',  async (ctx, next) => {  
   console.log("+++++++++ /fullfilment_service ++++++++++");
   console.log(`${JSON.stringify(ctx.request.body)}`);  
